@@ -84,8 +84,8 @@ resource "local_file" "ansible_inventory" {
   filename = "inventory.ini"
 
   content = <<EOF
-[splunk_server]
-${var.instance_name} ansible_host=${var.elastic_ip_needed ? aws_eip.splunk_eip[0].public_ip : aws_instance.splunk_server.public_ip} ansible_user=ec2-user ansible_ssh_private_key_file=${var.key_name}.pem
+[splunk]
+${var.instance_name} ansible_host=${var.elastic_ip_needed ? aws_eip.splunk_eip[0].public_ip : aws_instance.splunk_server.public_ip} ansible_user=ec2-user
 EOF
 }
 
@@ -97,5 +97,7 @@ resource "local_file" "ansible_group_vars" {
 splunk_instance:
   name: ${var.instance_name}
   private_ip: ${aws_instance.splunk_server.private_ip}
+  instance_id: ${aws_instance.splunk_server.id}
+  splunk_admin_password: admin123
 EOF
 }

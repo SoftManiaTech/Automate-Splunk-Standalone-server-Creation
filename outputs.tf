@@ -8,6 +8,11 @@ output "private_ip" {
   value       = aws_instance.splunk_server.private_ip
 }
 
+output "instance_id" {
+  description = "The id of the Splunk instance"
+  value       = aws_instance.splunk_server.id
+}
+
 output "public_or_elastic_ip" {
   description = "Elastic IP if assigned, otherwise public IP"
   value       = var.elastic_ip_needed ? aws_eip.splunk_eip[0].public_ip : aws_instance.splunk_server.public_ip
