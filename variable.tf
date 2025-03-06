@@ -42,6 +42,7 @@ variable "instance_type" {
   default     = "t2.medium"
 }
 
+
 variable "storage_size" {
   type        = number
   description = "Size of the root volume in GB"
@@ -57,4 +58,12 @@ variable "elastic_ip_needed" {
 variable "ssh_public_key" {
   type        = string
   description = "SSH public key for authentication"
+}
+
+variable "aws_secret_key" {
+  type        = string
+}
+
+variable "aws_access_key" {
+  type        = string
 }
